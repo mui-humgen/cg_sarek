@@ -1,0 +1,32 @@
+id: sarek
+name: Sarek
+description: A workflow for germline and somatic variant calling
+version: 3.4.0
+website: https://github.com/nf-core/sarek
+
+workflow:
+  steps:
+    - name: Run Sarek
+      script: /home/q107ma/nf-core-sarek/3_4_0/
+      revision: 3.4.0
+      params:
+        profile: "apptainer,slurm"
+        params-file: "/home/q107ma/sarek_automatization/nf-params_auto.json"
+        input: "/home/q107ma/sarek_automatization/sarek_input/WES_H_samplesheet.csv"
+        outdir: "/home/q107ma/sarek_automatization/sarek_output/WES_H_sarek_out"
+        wes: true
+        config: "/home/q107ma/sarek_automatization/sarek_slurm_auto.config"
+        offline: true
+        resume: true
+
+  inputs:
+    - id: input
+      description: Sample Sheet
+      type: file
+      value: "/home/q107ma/sarek_automatization/sarek_input/WES_H_samplesheet.csv"
+
+  outputs:
+    - id: outdir
+      description: Output
+      type: local_folder
+      value: "/home/q107ma/sarek_automatization/sarek_output/WES_H_sarek_out"
